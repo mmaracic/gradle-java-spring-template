@@ -1,0 +1,27 @@
+plugins {
+    // NOTE: external plugin version is specified in implementation dependency artifact of the project's build file
+    id 'io.spring.dependency-management'
+}
+
+group 'hr.mmaracic.website'
+version '1.0-SNAPSHOT'
+java.sourceCompatibility = JavaVersion.VERSION_17
+
+repositories {
+    mavenCentral()
+}
+
+//Needs to be here otherwise versions won't transfer to modules that do not apply org.springframework.boot plugin (libraries)
+dependencyManagement {
+    imports {
+        mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
+    }
+}
+
+dependencies {
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+}

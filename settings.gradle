@@ -1,2 +1,6 @@
-rootProject.name = 'Website'
+rootProject.name = 'Template Application'
 
+include(
+        "application",
+        "domain"
+)
