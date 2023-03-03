@@ -1,4 +1,4 @@
-package hr.mmaracic.website;
+package hr.mmaracic;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

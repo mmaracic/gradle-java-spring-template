@@ -1,4 +1,4 @@
-package hr.mmaracic.website;
+package hr.mmaracic;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
