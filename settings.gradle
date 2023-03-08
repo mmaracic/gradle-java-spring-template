@@ -2,5 +2,6 @@ rootProject.name = 'Template Application'
 
 include(
         "application",
-        "domain"
+        "domain",
+        "code-coverage"
 )

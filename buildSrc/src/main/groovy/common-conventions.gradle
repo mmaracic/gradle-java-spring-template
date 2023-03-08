@@ -4,6 +4,7 @@ plugins {
     //applies spring BOM to define compatible version for spring related library
     id 'java-test-fixtures'
     //produces test fixtures which are expected in folder src/testFixtures/java of the module
+    id 'jacoco'
 }
 
 group 'hr.mmaracic.website'
@@ -36,4 +37,13 @@ dependencies {
 
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+tasks.jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+    reports {
+        xml.enabled false
+        csv.enabled false
+    }
 }
