@@ -1,8 +1,6 @@
 package hr.mmaracic.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -14,6 +12,7 @@ import java.time.OffsetDateTime;
 @Data
 @Entity
 @Table(name = "app_user")
+@NoArgsConstructor
 @RequiredArgsConstructor
 @EntityListeners(AuditingEntityListener.class) //Enables auditing
 public class User {
@@ -26,7 +25,8 @@ public class User {
 
     @Size(min = 1, max = 10)
     @NotNull
-    private final String name;
+    @NonNull
+    private String name;
 
     @CreatedDate
     @EqualsAndHashCode.Exclude

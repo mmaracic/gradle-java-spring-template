@@ -1,6 +1,6 @@
 package hr.mmaracic.repository;
 
-import hr.mmaracic.configuration.TestConfiguration;
+import hr.mmaracic.configuration.DataJpaTestConfiguration;
 import hr.mmaracic.model.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@ContextConfiguration(classes = {TestConfiguration.class})
+@ContextConfiguration(classes = {DataJpaTestConfiguration.class})
 class UserRepositoryTest {
 
     @Autowired

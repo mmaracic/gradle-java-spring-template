@@ -4,6 +4,12 @@ plugins {
     id 'application-conventions'
 }
 dependencies {
+    implementation(project(':domain'))
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    testRuntimeOnly 'com.h2database:h2:2.1.214'
+
+    testImplementation(testFixtures(project(":domain")))
 }
