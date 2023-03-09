@@ -1,6 +1,9 @@
 plugins {
     // NOTE: external plugin version is specified in implementation dependency artifact of the project's build file
     id 'io.spring.dependency-management'
+    //applies spring BOM to define compatible version for spring related library
+    id 'java-test-fixtures'
+    //produces test fixtures which are expected in folder src/testFixtures/java of the module
 }
 
 group 'hr.mmaracic.website'
@@ -20,6 +23,9 @@ dependencyManagement {
 
 dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // Implementation dependencies are not leaked to consumers when building
+    testFixturesImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 tasks.withType(Test).configureEach {
