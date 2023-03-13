@@ -1,7 +1,7 @@
 # Readme
 
 * multimodule spring application
-* Contain one spring application and one spring library
+* Contain one spring application, one spring library and coverage module
 * Convention plugins define dependencies, gradle plugins and properties shared between modules
   * there are two convention plugins - application-conventions.gradle and common-conventions.gradle
   * convention plugins can not contain versions
@@ -14,3 +14,18 @@
 * application-conventions.gradle defines dependencies, gradle plugins and properties needed only for applications
   * org.springframework.boot plugin is explicitly needed only in application to enable building bootable jar - bootJar task
   * only applications need to include application-conventions.gradle
+
+## Additional features
+* gradle fixtures
+* runtime docker Postgres database
+* liquibase
+* Lombok with configuration
+* Spring jpa + audit date
+* Model validations
+* Logging
+
+## How to run
+### Docker files
+docker-compose -p be-template -f docker/docker-compose-postgres.yml up &
+#### Application with default profile
+./gradlew application:bootRun
