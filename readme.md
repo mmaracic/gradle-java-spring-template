@@ -21,6 +21,7 @@
 * liquibase
 * Lombok with configuration
 * Spring jpa + audit date
+* Jpa metamodel generator + jpa criteria query
 * Model validations
 * Logging
 

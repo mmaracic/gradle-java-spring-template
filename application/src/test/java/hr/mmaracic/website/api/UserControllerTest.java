@@ -3,6 +3,7 @@ package hr.mmaracic.website.api;
 import hr.mmaracic.BaseTestConfiguration;
 import hr.mmaracic.model.User;
 import hr.mmaracic.repository.UserRepository;
+import hr.mmaracic.repository.impl.UserCustomRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,9 @@ class UserControllerTest {
 
     @MockBean
     private UserRepository userRepository;
+
+    @MockBean
+    private UserCustomRepositoryImpl userCustomRepositoryImpl;
 
     @Test
     void testController() {

@@ -2,6 +2,7 @@ package hr.mmaracic.repository;
 
 import hr.mmaracic.configuration.DataJpaTestConfiguration;
 import hr.mmaracic.model.User;
+import hr.mmaracic.model.User_;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -52,4 +53,17 @@ class UserRepositoryTest {
             assertThat(exception.getMessage(), equalTo("Validation failed for classes [hr.mmaracic.model.User] during persist time for groups [javax.validation.groups.Default, ]\nList of constraint violations:[\n\tConstraintViolationImpl{interpolatedMessage='size must be between 1 and 10', propertyPath=name, rootBeanClass=class hr.mmaracic.model.User, messageTemplate='{javax.validation.constraints.Size.message}'}\n]"));
         }
     }
+
+    @Test
+    void userNameLengthBetween5and7() {
+        userRepository.save(new User("test"));
+        userRepository.save(new User("orange"));
+        userRepository.save(new User("yellow"));
+        userRepository.save(new User("intricate"));
+        List<User> userList = userRepository.findAllUsersWithAttributeLengthBetween(User_.name,5,7);
+        assertThat(userList.size(), equalTo(2));
+        assertThat(userList.get(0), equalTo(new User("orange")));
+        assertThat(userList.get(1), equalTo(new User("yellow")));
+    }
+
 }
