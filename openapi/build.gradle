@@ -1,0 +1,47 @@
+plugins {
+    id 'java-library'
+    id 'common-conventions'
+    id "org.openapi.generator" version "6.0.1"
+}
+
+def props = new Properties()
+file("../gradle.properties").withInputStream { props.load(it) }
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //used by generated controller code
+    implementation("org.springframework.boot:spring-boot-starter-web")
+
+    //openAPI
+    implementation "org.springdoc:springdoc-openapi-ui:1.6.15"
+    implementation "org.openapitools:jackson-databind-nullable:0.2.3"
+
+}
+
+openApiGenerate {
+    generatorName = "spring"
+    verbose = false
+    validateSpec = true
+    outputDir = "$rootDir/openapi"
+    inputSpec = "$rootDir/openapi/spec/UserApi.yaml"
+    skipOverwrite = false
+    apiPackage = "hr.mmaracic.api"
+    modelPackage = "hr.mmaracic.api.model"
+    configOptions = [
+            delegatePattern: "true",
+            dateLibrary: "java8",
+            serializationLibrary: "jackson",
+            configPackage: "hr.mmaracic.api.configuration",
+            basePackage: "hr.mmaracic.api",
+            interfaceOnly: "false", //should have same value as skipDefaultInterface, true when we implement Controller ourselves
+            skipDefaultInterface: "false",
+            useSpringController: "true",
+            useJakartaEe: "true"
+    ]
+}
+
+compileJava.dependsOn tasks.openApiGenerate
+tasks.clean.delete.add(file("src"))

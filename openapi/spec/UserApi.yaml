@@ -1,0 +1,72 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: User API
+  description: User API
+paths:
+  /user/count:
+    get:
+      summary: Get user count
+      description: Get the count of users
+      operationId: userCount
+      responses:
+        '200':
+          description: Successfully returned a list of rules
+          content:
+            application/json:
+              schema:
+                type: integer
+                format: int64
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /user/by-name:
+    get:
+      summary: Get user by name
+      description: Get a user by name
+      operationId: userByName
+      parameters:
+        - name: name
+          in: query
+          description: User name
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully returned a user by name
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      description: Response returned in case of error
+      type: object
+      properties:
+        message:
+          description: Error message
+          type: string
+    UserDto:
+      description: User
+      type: object
+      properties:
+        id:
+          description: User database id
+          type: integer
+        name:
+          description: User name
+          type: string
+        created:
+          description: Timestamš when user was created
+          type: string
+          format: date-time

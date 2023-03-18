@@ -3,5 +3,6 @@ rootProject.name = 'Template Application'
 include(
         "application",
         "domain",
-        "code-coverage"
+        "code-coverage",
+        "openapi"
 )
