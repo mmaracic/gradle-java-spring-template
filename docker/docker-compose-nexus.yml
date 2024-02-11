@@ -1,0 +1,15 @@
+# Default user is admin and the uniquely generated password can be found in the /nexus-data/admin.password file inside the volume. Initial password has to be replaced on login.
+# It can take some time (2-3 minutes) for the service to launch in a new container. It is readz when log reads "Started Sonatype Nexus OSS <version>"
+
+version: "3"
+services:
+  nexus:
+    image: sonatype/nexus3
+    restart: always
+    volumes:
+      - "nexus-data:/sonatype-work"
+    ports:
+      - "8091:8081"
+      - "8095:8085"
+volumes:
+  nexus-data:

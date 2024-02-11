@@ -1,4 +1,24 @@
 rootProject.name = 'Template Application'
+logger.lifecycle "Running gradle version: $gradle.gradleVersion"
+
+buildCache {
+    local {
+        enabled = false
+        push = true
+    }
+    //When using nexus create a raw repository without mime checks
+    remote(HttpBuildCache) {
+        enabled = true
+        push = true
+        url = 'http://localhost:8091/repository/gradle_cache/'
+        allowInsecureProtocol = true
+        credentials {
+            username = 'gradle_cache'
+            password = 'gradle_cache'
+        }
+    }
+}
+
 
 include(
         "application",
