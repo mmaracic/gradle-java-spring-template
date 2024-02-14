@@ -9,7 +9,10 @@ plugins {
 
 group 'hr.mmaracic.website'
 version '1.0-SNAPSHOT'
-java.sourceCompatibility = JavaVersion.VERSION_17
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+}
 
 repositories {
     mavenCentral()
@@ -36,6 +39,8 @@ dependencies {
     testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
     // Implementation dependencies are not leaked to consumers when building
     testFixturesImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -49,7 +54,7 @@ tasks.withType(Test).configureEach {
 tasks.jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
     reports {
-        xml.enabled false
-        csv.enabled false
+        xml.required = false
+        csv.required = false
     }
 }

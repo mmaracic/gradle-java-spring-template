@@ -44,4 +44,5 @@ openApiGenerate {
 }
 
 compileJava.dependsOn tasks.openApiGenerate
+processResources.dependsOn tasks.openApiGenerate
 tasks.clean.delete.add(file("src"))
