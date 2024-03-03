@@ -1,18 +1,18 @@
 package hr.mmaracic.website.api;
 
-import hr.mmaracic.api.UserApiDelegate;
+import hr.mmaracic.api.UserApi;
 import hr.mmaracic.api.model.UserDto;
 import hr.mmaracic.website.mapper.DtoMapper;
 import hr.mmaracic.website.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.server.ResponseStatusException;
 
-@Component
+@Controller
 @RequiredArgsConstructor
-public class UserApiDelegateImpl implements UserApiDelegate {
+public class UserApiController implements UserApi {
 
     private final UserService userService;
 

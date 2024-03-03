@@ -3,13 +3,13 @@ package hr.mmaracic.repository;
 import hr.mmaracic.configuration.DataJpaTestConfiguration;
 import hr.mmaracic.model.User;
 import hr.mmaracic.model.User_;
+import jakarta.validation.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ContextConfiguration;
 
-import javax.validation.*;
 import java.util.List;
 import java.util.Set;
 
@@ -50,7 +50,7 @@ class UserRepositoryTest {
                     () -> userRepository.findAll(),
                     "ConstraintViolationException wasn't thrown"
             );
-            assertThat(exception.getMessage(), equalTo("Validation failed for classes [hr.mmaracic.model.User] during persist time for groups [javax.validation.groups.Default, ]\nList of constraint violations:[\n\tConstraintViolationImpl{interpolatedMessage='size must be between 1 and 10', propertyPath=name, rootBeanClass=class hr.mmaracic.model.User, messageTemplate='{javax.validation.constraints.Size.message}'}\n]"));
+            assertThat(exception.getMessage(), equalTo("Validation failed for classes [hr.mmaracic.model.User] during persist time for groups [jakarta.validation.groups.Default, ]\nList of constraint violations:[\n\tConstraintViolationImpl{interpolatedMessage='size must be between 1 and 10', propertyPath=name, rootBeanClass=class hr.mmaracic.model.User, messageTemplate='{jakarta.validation.constraints.Size.message}'}\n]"));
         }
     }
 

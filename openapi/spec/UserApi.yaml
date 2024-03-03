@@ -11,7 +11,7 @@ paths:
       operationId: userCount
       responses:
         '200':
-          description: Successfully returned a list of rules
+          description: Successfully returned a list of users
           content:
             application/json:
               schema:
@@ -67,6 +67,6 @@ components:
           description: User name
           type: string
         created:
-          description: Timestamš when user was created
+          description: Timestamp when user was created
           type: string
           format: date-time

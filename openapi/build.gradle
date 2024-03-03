@@ -1,7 +1,9 @@
+//Home controller from this module has to be ignored bz top level application until
+
 plugins {
     id 'java-library'
     id 'common-conventions'
-    id "org.openapi.generator" version "6.0.1"
+    id "org.openapi.generator" version "7.3.0"
 }
 
 def props = new Properties()
@@ -16,8 +18,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
 
     //openAPI
-    implementation "org.springdoc:springdoc-openapi-ui:1.6.15"
-    implementation "org.openapitools:jackson-databind-nullable:0.2.3"
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0"
+    implementation "org.openapitools:jackson-databind-nullable:0.2.6"
 
 }
 
@@ -28,18 +30,19 @@ openApiGenerate {
     outputDir = "$rootDir/openapi"
     inputSpec = "$rootDir/openapi/spec/UserApi.yaml"
     skipOverwrite = false
+    ignoreFileOverride = "$rootDir/openapi/.openapi-generator-ignore-initial" //specify user defined file that specifies files not to override in initial run i.e. to skip their generation
     apiPackage = "hr.mmaracic.api"
     modelPackage = "hr.mmaracic.api.model"
     configOptions = [
-            delegatePattern: "true",
+            delegatePattern: "false",
             dateLibrary: "java8",
             serializationLibrary: "jackson",
             configPackage: "hr.mmaracic.api.configuration",
             basePackage: "hr.mmaracic.api",
-            interfaceOnly: "false", //should have same value as skipDefaultInterface, true when we implement Controller ourselves
-            skipDefaultInterface: "false",
-            useSpringController: "true",
-            useJakartaEe: "true"
+            interfaceOnly: "true", //should have same value as skipDefaultInterface, true when we implement Controller ourselves. Spring boot problems with controllers, skipping delegates, implementing ourselves
+            skipDefaultInterface: "true",
+            //useSpringController: "false", //does not work
+            useSpringBoot3: "true"
     ]
 }
 

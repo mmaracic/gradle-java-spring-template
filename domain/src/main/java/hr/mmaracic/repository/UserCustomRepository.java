@@ -1,8 +1,8 @@
 package hr.mmaracic.repository;
 
 import hr.mmaracic.model.User;
+import jakarta.persistence.metamodel.Attribute;
 
-import javax.persistence.metamodel.Attribute;
 import java.util.List;
 
 public interface UserCustomRepository {

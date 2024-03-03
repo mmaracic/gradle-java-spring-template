@@ -27,6 +27,12 @@
 
 ## How to run
 ### Docker files
+```
 docker-compose -p be-template -f docker/docker-compose-postgres.yml up &
-#### Application with default profile
+```
+### Application with default profile
+```
 ./gradlew application:bootRun
+```
+### Openapi spec url
+http://localhost:8080/swagger-ui/index.html

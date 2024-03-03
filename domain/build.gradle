@@ -13,5 +13,5 @@ dependencies {
     //liquibase
     implementation 'org.liquibase:liquibase-core:4.19.0'
 
-    testRuntimeOnly 'com.h2database:h2:2.1.214'
+    testRuntimeOnly "com.h2database:h2:${h2Version}"
 }
